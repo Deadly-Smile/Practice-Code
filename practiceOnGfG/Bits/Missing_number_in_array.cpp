@@ -12,7 +12,6 @@ typedef long long ll;
 typedef unsigned long long ull;
 typedef std::pair<int, int> pairs;
 //---------------------------Good luck---------------------------------//
-
 template<typename T>
 void inputArray(T arr[], int n){
     for(int i = 0; i < n; i++){          
@@ -20,28 +19,17 @@ void inputArray(T arr[], int n){
     }
 }
 
-pair<int, int> twoOddNum(int arr[], int n) {
-    // code here
-    int Xor{0},x{0},y{0};
+int findMissingOne(int arr[], int n) {
 
-    // getting x^y
+    int x1{0},x2{0};
+    for(int i = 1; i <= n+1; i++) {
+        x1 ^= i;
+    }
     for(int i = 0; i < n; i++) {
-        Xor ^= arr[i];
+        x2 ^= arr[i];
     }
 
-    // getting getting first mismatched bit (right to left)
-    int rightMostBit = ~(Xor - 1) & Xor;
-    for(int i = 0; i < n; i++) {
-        // set of 1
-        if(rightMostBit & arr[i])
-            x ^= arr[i];
-
-        // set of 0
-        else
-            y ^= arr[i];
-    }
-
-    return {x, y};
+    return (x1 ^ x2);
 }
 
 int main() {
@@ -49,18 +37,17 @@ int main() {
     int test{0};   cin >> test;
     while(test--) {
         int n{0};   std::cin >> n;
-        int arr[n]; inputArray(arr, n);
-        pairs p = twoOddNum(arr, n);
-        std::cout << p.first << " " << p.second << std::endl;
+        int arr[n]; inputArray(arr, n);        
+        std::cout << findMissingOne(arr, n) << std::endl;
     }
     return 0;
 }
 
-/*
+/*  
 input :
 1
-8
-4 2 4 5 2 3 3 1
+9
+1 2 4 5 6 3 9 7 8
 output :
-5 1 / 1 5
+10
 */
