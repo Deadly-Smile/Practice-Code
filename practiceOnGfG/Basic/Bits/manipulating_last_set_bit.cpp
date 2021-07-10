@@ -12,37 +12,33 @@ typedef long long ll;
 typedef unsigned long long ull;
 typedef std::pair<int, int> pairs;
 //---------------------------Good luck---------------------------------//
-
-template<typename T1>
-T1 gcd (T1 a, T1 b) {
-    if (b == 0) return a;
-    else    return gcd (b, a%b);
+//  manipulating last set bit
+int removeLastBit(int num) {
+    return (num & (num-1));
 }
 
-pairs GCDandLMC(int n, int m) {
-    int G = gcd(n, m);
-    return {G, (G * m/G * n/G)};
+int getLastBit(int num) {
+    return (num & (-num));
 }
 
 int main() {
     FastIO;
-    int test{0};   cin >> test;
-    while(test--) {
-        int n{0},m{0};
-        std::cin >> n >> m;
+    int n{0};
+    std::cin >> n;
 
-        pairs p = GCDandLMC(n,m);
-        std::cout << p.first << " " << p.second << std::endl;
-    }
+    std::cout << removeLastBit(n) << std::endl;
+    std::cout << getLastBit(n) << std::endl;
+
     return 0;
 }
 
 /*
-input :
+input:
+10
+7
+output:
+8
 2
-12 16
-20 15
-output :
-4 48
-5 60
+6
+1
 */

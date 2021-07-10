@@ -13,36 +13,44 @@ typedef unsigned long long ull;
 typedef std::pair<int, int> pairs;
 //---------------------------Good luck---------------------------------//
 
-template<typename T1>
-T1 gcd (T1 a, T1 b) {
-    if (b == 0) return a;
-    else    return gcd (b, a%b);
-}
+std::vector<int> getPrimeFactors(int n) {
+    std::vector<int> list;
+    while(n % 2 == 0) {
+        list.push_back(2);
+        n /= 2;
+    }
 
-pairs GCDandLMC(int n, int m) {
-    int G = gcd(n, m);
-    return {G, (G * m/G * n/G)};
+    for(int i = 3; i * i <= n; i += 2) {
+        while(n % i == 0) {
+            list.push_back(i);
+            n /= i;
+        }
+    }
+
+    if(n > 2) {
+        list.push_back(n);
+    }
+    return list;
 }
 
 int main() {
     FastIO;
     int test{0};   cin >> test;
     while(test--) {
-        int n{0},m{0};
-        std::cin >> n >> m;
-
-        pairs p = GCDandLMC(n,m);
-        std::cout << p.first << " " << p.second << std::endl;
+        int n{0};   std::cin >> n;
+        for(auto i : getPrimeFactors(n)) {
+            std::cout << i << " ";
+        }   std::cout << std::endl;
     }
     return 0;
 }
 
 /*
-input :
+input : 
 2
-12 16
-20 15
+315
+28
 output :
-4 48
-5 60
+3 3 5 7 
+2 2 7 
 */

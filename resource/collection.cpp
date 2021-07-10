@@ -31,7 +31,6 @@ sort(arr, arr + n, greater<T>());
 std::map<char, int> getLetter(string s);
 template<typename T>
 void inputArray(T arr[], int n);
-void getPrime();
 template<typename T>        // deep copy of string
 void deepCopy(T* copyTo, T* copy);
 template<typename M>
@@ -56,14 +55,27 @@ void inputArray(T arr[], int n){
 }
 
 
-std::vector<bool> prime(1000001,true);
-void getPrime(){
-    for(int i = 2; i < 1000001; i++) {
-        if(prime[i]){
-            for(int j = i + i; j < 1000001; j += i)
-                prime[j] = false;
+const int N = 1e5 + 1;
+bool prime[N] = {0};
+void calculatePrime(int n) {
+    // to use multiple time
+    // memset(prime, 0, sizeof(prime));
+    for (int i = 2; i*i <= n; i++){
+        if (!prime[i]) {
+            for (int j = i*i; j <= n; j += i)
+                prime[j] = true;
         }
     }
+}
+
+std::vector<int> getPrimeList(int n) {
+    calculatePrime(n);
+    std::vector<int> v;
+    for(int i = 2; i <= n; i++) {
+        if(!prime[i])
+            v.PB(i);
+    }
+    return v;
 }
 
 int divisors(int n) {
@@ -82,6 +94,16 @@ int divisors(int n) {
     return count;
 }
 
+template<typename T>
+int digits(T n) {
+    int count{0};
+    while(n > 0) {
+        n /= 10;
+        count++;
+    }
+    return count;
+}
+
 int divisors(int n) {
     if(n == 1) return 1;
     int count{0};
@@ -91,8 +113,7 @@ int divisors(int n) {
                 count += 2;
             } else {
                 count++;
-            }
-            
+            }            
         }
     }
     return count;

@@ -12,37 +12,31 @@ typedef long long ll;
 typedef unsigned long long ull;
 typedef std::pair<int, int> pairs;
 //---------------------------Good luck---------------------------------//
-
-template<typename T1>
-T1 gcd (T1 a, T1 b) {
-    if (b == 0) return a;
-    else    return gcd (b, a%b);
+// Clear all bits from left side bit to i-th bit
+int clearLSB(int num, int pos) {
+    return (num & ~((1 << (pos+1)) - 1));
 }
 
-pairs GCDandLMC(int n, int m) {
-    int G = gcd(n, m);
-    return {G, (G * m/G * n/G)};
+// Clearing all bits from right side bit to i-th bit
+int clearRSB(int num, int pos) {
+    return (num & ((1 << pos) - 1));
 }
 
 int main() {
     FastIO;
-    int test{0};   cin >> test;
-    while(test--) {
-        int n{0},m{0};
-        std::cin >> n >> m;
+    int n{0},p{0};
+    std::cin >> n >> p;
 
-        pairs p = GCDandLMC(n,m);
-        std::cout << p.first << " " << p.second << std::endl;
-    }
+    std::cout << clearLSB(n, p) << std::endl;
+    std::cout << clearRSB(n, p) << std::endl;
+
     return 0;
 }
 
 /*
-input :
-2
-12 16
-20 15
-output :
-4 48
-5 60
+input:
+29 3
+output:
+16
+5
 */
