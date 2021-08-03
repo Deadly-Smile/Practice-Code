@@ -1,0 +1,50 @@
+#include<stdio.h>
+int main()
+{
+    int num,remain,loop_count;
+    scanf("%d",&num);
+    remain=num/10;
+    printf("\n");
+    for(loop_count=remain;loop_count>=1;loop_count--)
+    {
+        printf("X");
+    }
+    loop_count=num-(remain*10);
+        if(loop_count==1)
+        {
+            printf("I");
+        }
+        if(loop_count==2)
+        {
+            printf("II");
+        }
+        if(loop_count==3)
+        {
+            printf("III");
+        }
+        if(loop_count==4)
+        {
+            printf("IV");
+        }
+        if(loop_count==5)
+        {
+            printf("V");
+        }
+        if(loop_count==6)
+        {
+            printf("VI");
+        }
+        if(loop_count==7)
+        {
+            printf("VII");
+        }
+        if(loop_count==8)
+        {
+            printf("VIII");
+        }
+        if(loop_count==9)
+        {
+            printf("IX");
+        }
+    return 0;
+}

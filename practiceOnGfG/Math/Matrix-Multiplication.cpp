@@ -13,8 +13,6 @@ typedef unsigned long long ull;
 typedef std::pair<int, int> pairs;
 //---------------------------Good luck---------------------------------//
 typedef std::vector<std::vector<ll>> Matrix;
-ll M = 1e9 + 7;
-std::vector<Matrix> record;
 
 Matrix matrixMultiplication (Matrix matrix1, Matrix matrix2) {
     int row1{(int)matrix1.size()}, col1{(int)matrix1.at(0).size()};
@@ -28,11 +26,11 @@ Matrix matrixMultiplication (Matrix matrix1, Matrix matrix2) {
                 ll mul{1};
                 for(int l = 0; l < 2; l++) {
                     if(l % 2)
-                        mul = ((matrix2[k][j] % M) * (mul % M)) % M;                        
+                        mul *= matrix2[k][j];                        
                     else
-                        mul = ((matrix1[i][k] % M) * (mul % M)) % M;
+                        mul *= matrix1[i][k];
                 }
-                sum = (mul + sum) % M;
+                sum += mul;
             }
             matrix[i].push_back(sum);
         }
@@ -40,39 +38,6 @@ Matrix matrixMultiplication (Matrix matrix1, Matrix matrix2) {
 
     return matrix;
 }
-
-void initialize (int a, int b, int c) {
-    Matrix matrix{{a,b,c},{1,0,0},{0,1,0}};
-    record.push_back(matrix);
-    for (int i = 0; i < 32; i++) {
-        matrix = matrixMultiplication(matrix, matrix);
-        record.push_back(matrix);
-    }
-}
-
-ll solve(int &a, int &b, int &c, int &n, int &m) {
-    bitset<32> set(n-2);
-    M = m;
-    initialize(a, b, c);
-
-    Matrix matrix{{a,b,c},{1,0,0},{0,1,0}};
-    int i{0};
-    for (i = 0; i < 32; i++) {
-        if(set[i]) {
-            matrix = record[i];
-            break;
-        }
-    }
-
-    for (i = i+1; i < 32; i++) {
-        if(set[i]) {
-            matrix = matrixMultiplication(matrix , record[i]);
-        }
-    }
-    record.clear();
-    return (matrix[0][0] + matrix[0][1] + matrix[0][2]) % M;
-}
-
 
 int main() {
     #ifndef ONLINE_JUDGE
@@ -83,10 +48,50 @@ int main() {
 
     int test{0};   std::cin >> test;
     while(test--) {
-        int a{0},b{0},c{0},n{0},m{0};
-        std::cin >> a >> b >> c >> n >> m;
-        std::cout << solve(a, b, c, n, m) << std::endl;
+        int n1{0},m1{0},n2{0},m2{0},temp{0};
+        std::cin >> n1 >> m1;
+        Matrix matrix1(n1);
+
+        for (int i = 0; i < n1; i++) {
+            for (int j = 0; j < m1; j++) {
+                std::cin >> temp;
+                matrix1[i].push_back(temp);
+            }
+        }
+
+        std::cin >> n2 >> m2;
+        Matrix matrix2(n2);
+        for (int i = 0; i < n2; i++) {
+            for (int j = 0; j < m2; j++) {
+                std::cin >> temp;
+                matrix2[i].push_back(temp);
+            }
+        }
+
+        Matrix matrix = matrixMultiplication(matrix1, matrix2);
+        for (auto i : matrix) {
+            for (auto j : i) {
+                std::cout << j << " ";
+            }   std::cout << std::endl;
+        }   std::cout << std::endl;
     }
     
     return 0;
 }
+/*
+input :
+1
+3 3
+1 2 3
+4 5 6
+7 8 9
+3 3
+1 2 3
+4 5 6
+7 8 9
+
+output :
+30 36 42 
+66 81 96 
+102 126 150 
+*/
