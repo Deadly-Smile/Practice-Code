@@ -1,3 +1,5 @@
+// problem link - https://practice.geeksforgeeks.org/problems/generalised-fibonacci-numbers1820/1
+
 // { Driver Code Starts
 
 #include <bits/stdc++.h>
@@ -67,7 +69,7 @@ class Solution {
 	        }
 	    }
 	    record.clear();
-	    return (matrix[0][0] + matrix[0][1] + matrix[0][2]) % M;
+	    return (matrix[0][0] + matrix[0][1] + (c*(n-2))) % M;
     }
 };
 
@@ -91,3 +93,12 @@ int main() {
     }
     return 0;
 }  // } Driver Code Ends
+
+/*
+Failed Test :
+input :
+1
+69355661 7 18756 613773661 2815223
+output :
+1362519
+*/

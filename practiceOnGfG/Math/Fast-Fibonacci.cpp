@@ -17,13 +17,38 @@ typedef std::vector<std::vector<ll>> Matrix;
 const int M = 1e9 + 7;
 std::vector<Matrix> record;
 
+// Matrix matrixMultiplication (Matrix matrix1, Matrix matrix2) {
+//     Matrix mat{{0, 0}, {0, 0}};
+//     mat[0][0] = (matrix1[0][0]*matrix2[0][0]) % M + (matrix1[0][1]*matrix2[1][0]) % M;
+//     mat[0][1] = (matrix1[0][0]*matrix2[0][1]) % M + (matrix1[0][1]*matrix2[1][1]) % M;
+//     mat[1][0] = (matrix1[1][0]*matrix2[0][0]) % M + (matrix1[1][1]*matrix2[1][0]) % M;
+//     mat[1][1] = (matrix1[1][0]*matrix2[0][1]) % M + (matrix1[1][1]*matrix2[1][1]) % M;
+//     return mat;
+// }
+
 Matrix matrixMultiplication (Matrix matrix1, Matrix matrix2) {
-    Matrix mat{{0, 0}, {0, 0}};
-    mat[0][0] = (matrix1[0][0]*matrix2[0][0]) % M + (matrix1[0][1]*matrix2[1][0]) % M;
-    mat[0][1] = (matrix1[0][0]*matrix2[0][1]) % M + (matrix1[0][1]*matrix2[1][1]) % M;
-    mat[1][0] = (matrix1[1][0]*matrix2[0][0]) % M + (matrix1[1][1]*matrix2[1][0]) % M;
-    mat[1][1] = (matrix1[1][0]*matrix2[0][1]) % M + (matrix1[1][1]*matrix2[1][1]) % M;
-    return mat;
+    int row1{(int)matrix1.size()}, col1{(int)matrix1.at(0).size()};
+    int col2{(int)matrix2.at(0).size()};
+    Matrix matrix(row1);
+
+    for(int i = 0; i < row1; i++) {
+        for(int j = 0; j < col2; j++) {
+            ll sum{0};
+            for(int k = 0; k < col1; k++) {
+                ll mul{1};
+                for(int l = 0; l < 2; l++) {
+                    if(l % 2)
+                        mul *= matrix2[k][j];                        
+                    else
+                        mul *= matrix1[i][k];
+                }
+                sum += mul;
+            }
+            matrix[i].push_back(sum);
+        }
+    }
+
+    return matrix;
 }
 
 void initialize() {

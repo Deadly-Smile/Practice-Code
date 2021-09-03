@@ -119,9 +119,16 @@ int divisors(int n) {
     return count;
 }
 
-template<typename T>                    // deep copy of string
+template<typename T> // not working       // deep copy of string
 void deepCopy(T* copyTo, T* copy) { 
     while (*copyTo++ = *copy++) ; 
+}
+
+void deepCopy(string &to, string &from) { 
+    to.clear();
+    for (auto i : from) {
+        to.push_back(i);
+    }
 }
 
 template<typename T>
@@ -136,6 +143,16 @@ template<typename M>
 M min(M arr[], int n){         // It works for all data type
     M m{arr[0]};
     for(int i = 1; i < n; i++){
+        if(m > arr[i])
+            m = arr[i];
+    }
+    return m;
+}
+
+template<typename M>
+M min(std::vector<M> arr){         // It works for all data type
+    M m{arr[0]};
+    for(int i = 1; i < arr.size(); i++){
         if(m > arr[i])
             m = arr[i];
     }
