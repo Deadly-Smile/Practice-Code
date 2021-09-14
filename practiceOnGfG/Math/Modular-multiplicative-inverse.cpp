@@ -37,7 +37,7 @@ pair<ll, ll> extendedEuclid (ll a, ll b) {
     return {x,y};
 }
 
-int modInverse (ll a, ll m) {
+ll modInverse (ll a, ll m) {
     // m is the mod number
     ll G = gcd(a, m);
     if(G == 1) {

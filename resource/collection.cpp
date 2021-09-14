@@ -7,12 +7,15 @@ using namespace std;
 #define PF push_front
 #define PB push_back
 #define MP make_pair
-#define Pair(x,y) std::pair<(x),(y)>
 typedef unsigned char Byte;
 typedef long long ll;
 typedef unsigned long long ull;
 typedef std::pair<int, int> pairs;
 //---------------------------Good luck---------------------------------//
+typedef std::priority_queue<int> MaxHeap;
+typedef priority_queue<int, vector<int>, greater<int>> MinHeap;
+
+
 
 int main() {
     FastIO;
@@ -54,6 +57,14 @@ void inputArray(T arr[], int n){
     }
 }
 
+template<typename T>
+void inputVec(std::vector<T> &arr, int n) {
+    T temp;
+    for(int i = 0; i < n; i++) {
+        std::cin >> temp;
+        arr.push_back(temp);
+    }
+}
 
 const int N = 1e5 + 1;
 bool prime[N] = {0};
