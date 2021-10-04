@@ -14,14 +14,15 @@ typedef std::pair<int, int> pairs;
 //---------------------------Good luck---------------------------------//
 typedef std::priority_queue<int> MaxHeap;
 typedef priority_queue<int, vector<int>, greater<int>> MinHeap;
-
+typedef std::vector<std::vector<long long>> Matrix;
 
 
 int main() {
     FastIO;
     int test{0};   cin >> test;
     while(test--) {
-        
+        // std::reverse(a.begin(), a.end());    // reverse
+        // std::vector<std::vector<int>> vec( n , std::vector<int> (m, 0));
     }
     return 0;
 }
@@ -31,7 +32,6 @@ sort(arr, arr + n, greater<T>());
 
 
 // All function initialaization
-std::map<char, int> getLetter(string s);
 template<typename T>
 void inputArray(T arr[], int n);
 template<typename T>        // deep copy of string
@@ -40,13 +40,8 @@ template<typename M>
 M min(M arr[], int n);
 template<typename T>        // copies array
 void copyArray(T arr[],T proxyArr[], int &n);
-template<typename P>
-void outputArray(P arr[], int &n);
 template<typename T1>
 T1 gcd (T1 a, T1 b);
-string findSum(string str1, string str2);
-long long mod(string num, long long &a);
-std::map<char, int> getLetter(string s);
 int divisors(int n);    // O(sqrt(N))
 
 
@@ -64,29 +59,6 @@ void inputVec(std::vector<T> &arr, int n) {
         std::cin >> temp;
         arr.push_back(temp);
     }
-}
-
-const int N = 1e5 + 1;
-bool prime[N] = {0};
-void calculatePrime(int n) {
-    // to use multiple time
-    // memset(prime, 0, sizeof(prime));
-    for (int i = 2; i*i <= n; i++){
-        if (!prime[i]) {
-            for (int j = i*i; j <= n; j += i)
-                prime[j] = true;
-        }
-    }
-}
-
-std::vector<int> getPrimeList(int n) {
-    calculatePrime(n);
-    std::vector<int> v;
-    for(int i = 2; i <= n; i++) {
-        if(!prime[i])
-            v.PB(i);
-    }
-    return v;
 }
 
 int divisors(int n) {
@@ -130,11 +102,6 @@ int divisors(int n) {
     return count;
 }
 
-template<typename T> // not working       // deep copy of string
-void deepCopy(T* copyTo, T* copy) { 
-    while (*copyTo++ = *copy++) ; 
-}
-
 void deepCopy(string &to, string &from) { 
     to.clear();
     for (auto i : from) {
@@ -148,6 +115,16 @@ void inputArray(T *start, T *end){      // Maybe its better :)
         std::cin >> *start;
         start++;
     } while (start != end);
+}
+
+template<typename M>
+M max(std::vector<M> arr){         // It works for all data type
+    M m{arr[0]};
+    for(int i = 1; i < arr.size(); i++){
+        if(m < arr[i])
+            m = arr[i];
+    }
+    return m;
 }
 
 template<typename M>
@@ -182,56 +159,17 @@ M min(M *start, M *end){        // Some how it does not work for float and doubl
     return m;
 }
 
-template<typename T>                // copies array
+template<typename T>    // copies array
 void copyArray(T arr[],T proxyArr[], int &n){
     for(int i = 0; i < n; i++){
         proxyArr[i] = arr[i];
     }
 }
 
-template<typename P>
-void outputArray(P arr[], int &n){
-    for(int i = 0; i < n; i++){
-        cout<<arr[i]<<" ";
-    }
-    printf("\n");
-}
-
-template<typename P>
-void outputArray(P *start, P *end){
-    do {
-        std::cout << *start << " ";
-        start++;
-    } while (start != end);
-    std::cout<<"\n";
-}
-
 template<typename T1>
 T1 gcd (T1 a, T1 b) {
     if (b == 0) return a;
     else    return gcd (b, a%b);
-}
-
-long long mod(string num, long long &a){ 
-    int res = 0;
-    for (int i = 0; i < num.length(); i++)
-         res = (res*10 + (int)num[i] - '0') % a;
-  
-    return res; 
-}
-
-std::map<char, int> getLetter(const string& s) {
-    std::map<char, int> letters;
-    for(auto i : s) {
-        if((i <= 'z' && i >= 'a') || (i <= 'Z' && i >= 'A')) {
-            auto it = letters.find(i);
-            if(it == letters.end())
-                letters.insert({i,1});
-            else
-                letters.at(i)++;
-        }
-    }
-    return letters;
 }
 
 int main(){

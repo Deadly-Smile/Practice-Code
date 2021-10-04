@@ -12,24 +12,25 @@ typedef long long ll;
 typedef unsigned long long ull;
 typedef std::pair<int, int> pairs;
 //---------------------------Good luck---------------------------------//
-
-std::vector<int> BFS(std::vector<int> graph[], int size, int root) {
+// Does not work
+// Its iterative function 
+// O(V+E) 
+std::vector<int> DFS(std::vector<int> graph[], int size, int root) {
     std::vector<int> v;
-    std::queue<int> que;
+    std::stack<int> s;
     bool isVisited[size+1] = {false};
 
+    s.push(root);
+    v.push_back(root);
     isVisited[root] = true;
-    que.push(root);
-    v.PB(root);
 
-    while(!que.empty()) {
-        int x = que.front();
-        que.pop();
-
+    while(!s.empty()) {
+        int x = s.top();
+        s.pop();
         for(auto i : graph[x]) {
             if(!isVisited[i]) {
-                que.push(i);
-                v.PB(i);
+                v.push_back(i);
+                s.push(i);
                 isVisited[i] = true;
             }
         }
@@ -45,12 +46,12 @@ int main() {
     std::vector<int> graph[n+1];
     for(int i = 0; i < m; i++) {
         cin >> a >> b;
-        graph[a].PB(b);
-        graph[b].PB(a);
+        graph[a].push_back(b);
+        graph[b].push_back(a);
     }
 
-    std::vector<int> v = BFS(graph, n, 1);
-
+    std::vector<int> v = DFS(graph, n, 1);
+    // std::sort(v.begin(), v.end());
     for(auto i : v) {
         std::cout << i << " ";
     }   std::cout << std::endl;

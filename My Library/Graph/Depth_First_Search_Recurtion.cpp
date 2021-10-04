@@ -12,49 +12,39 @@ typedef long long ll;
 typedef unsigned long long ull;
 typedef std::pair<int, int> pairs;
 //---------------------------Good luck---------------------------------//
+const int N = 1e5 + 1;
+std::vector<int> v;
+std::vector<int> graph[N];
+bool isVisited[N] = {false};
 
-// Its iterative function 
-// O(V+E) 
-std::vector<int> DFS(std::vector<int> graph[], int size, int root) {
-    std::vector<int> v;
-    std::stack<int> s;
-    bool isVisited[size+1] = {false};
-
-    s.push(root);
-    v.PB(root);
-    isVisited[root] = true;
-
-    while(!s.empty()) {
-        int x = s.top();
-        s.pop();
-        for(auto i : graph[x]) {
+void DFS(int root) {    // Its a recurtion function
+    if(!isVisited[root]) {
+        v.push_back(root);
+        isVisited[root] = true;
+        for(auto i : graph[root]) {
             if(!isVisited[i]) {
-                v.PB(i);
-                s.push(i);
-                isVisited[i] = true;
+                DFS(i);
             }
         }
     }
-    return v;
 }
 
-int main() {
+
+int main() {    // DFS
     FastIO;
     int n{0},m{0},a{0},b{0};
     cin >> n >> m;
 
-    std::vector<int> graph[n+1];
     for(int i = 0; i < m; i++) {
         cin >> a >> b;
-        graph[a].PB(b);
-        graph[b].PB(a);
+        graph[a].push_back(b);
+        graph[b].push_back(a);
     }
 
-    std::vector<int> v = DFS(graph, n, 1);
-    // std::sort(v.begin(), v.end());
+    DFS(1);
     for(auto i : v) {
         std::cout << i << " ";
     }   std::cout << std::endl;
-
+    
     return 0;
 }

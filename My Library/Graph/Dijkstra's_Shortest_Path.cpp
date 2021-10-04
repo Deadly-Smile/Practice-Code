@@ -18,9 +18,10 @@ std::vector<int> dijkstraSortPath(const std::vector<pairs> graph[], int nodes, i
     std::vector<int> values(nodes+1, 1e9);
     bool isVisited[nodes+1] = {0};
     std::priority_queue<pairs, vector<pairs>, greater<pairs>> q;
-    values[0] = -1;
+    // values[0] = -1;          // if nodes starts from 1
+    // values[nodes] = -1;  // if nodes starts from 0
     values[root] = 0;
-    q.push({0, 1});
+    q.push({0, root});
 
     // Relaxing
     while(!q.empty()) {
@@ -47,7 +48,7 @@ int main() {
     for (int i = 0; i < m; i++) {
         int x{0}, y{0}, z{0};
         std::cin >> x >> y >> z;
-        graph[x].PB({y, z});
+        graph[x].push_back({y, z});
     }
     std::vector<int> values = dijkstraSortPath(graph, n, 1);
     for (int i = 2; i < n + 1; i++) {

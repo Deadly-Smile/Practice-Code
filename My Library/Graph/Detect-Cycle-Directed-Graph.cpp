@@ -56,7 +56,7 @@ int main() {
         }
 
         if(isCycle(adj, v))    std::cout << "YES" << std::endl;
-        else        std::cout << "NO"  << std::endl;
+        else                   std::cout << "NO"  << std::endl;
     }
     
     return 0;
