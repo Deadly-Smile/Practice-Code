@@ -30,6 +30,14 @@ int solve(int arr[], int n) {
 		if(current < 0)
 			current = 0;
 	}
+
+	if(maxSoFar == 0) {
+    	maxSoFar = arr[0];
+   	    for(int i = 1; i < n; i++) {
+    	    if(maxSoFar < arr[i])
+    	        maxSoFar = arr[i];
+        }
+   	}
 	return maxSoFar;
 }
 

@@ -15,11 +15,11 @@ typedef std::pair<int, int> pairs;
 typedef std::vector<std::vector<ll>> Matrix;
 
 Matrix matrixMultiplication (Matrix matrix1, Matrix matrix2) {
-    int row1{(int)matrix1.size()}, col1{(int)matrix1.at(0).size()};
+    int row{(int)matrix1.size()}, col1{(int)matrix1.at(0).size()};
     int col2{(int)matrix2.at(0).size()};
-    Matrix matrix(row1);
+    Matrix matrix(row);
 
-    for(int i = 0; i < row1; i++) {
+    for(int i = 0; i < row; i++) {
         for(int j = 0; j < col2; j++) {
             ll sum{0};
             for(int k = 0; k < col1; k++) {

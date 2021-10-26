@@ -23,7 +23,7 @@ int main() {
     int n{0};   cin >> n;
     std::vector<std::pair<int, int>> pairs;
     int tempL{0},tempR{0},min{INT_MAX},max{INT_MIN};
-    // forFront(i,0,n) 
+
     for(int i = 0; i < n; i++) {
         cin >> tempL >> tempR;
         if(max < tempR) max = tempR;
@@ -33,21 +33,18 @@ int main() {
     int size = max - min + 2;
     int arr[size] = {0};
 
-    // forAuto(pairs)
     for(auto i : pairs) {
          arr[i.first]++;
         arr[i.second]--;
     }
 
     int sum{0},index{0};
-    // forFront(i,1,size) 
     for(int i = 1; i < size; i++) {
         arr[i] += sum;
         sum = arr[i];
     }
 
     max = INT_MIN;
-    // forFront(i,1,size) 
     for(int i = 1; i < size; i++) {
         if(max < arr[i]) {
             max = arr[i];

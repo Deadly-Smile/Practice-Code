@@ -51,6 +51,37 @@ ull kruskalMST(std::vector<pair<int, pairs>> &graph, int nodes) {
     return cost;
 }
 
+// This is copyed code
+int spanningTree(int V, vector<vector<int>> adj[]) {
+    vector<int> key(V,INT_MAX);
+    vector<int> mst(V,false);
+    priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>> pq;
+
+    key[0] = 0;
+    pq.push({0,0});
+    int ans = 0;
+
+    while(!pq.empty()) {
+        int u;
+        mst[u = pq.top()[1]] = true;
+        pq.pop();
+        for(auto it:adj[u]) {
+            int v = it[0];
+            int w = it[1];
+            if(mst[v] == false && w < key[v]) {
+                key[v] = w;
+                pq.push({key[v],v});
+            }
+        }
+    }
+    for(auto it : key) {
+        if(it != INT_MAX)
+            ans += it;
+    }
+       
+    return ans;
+}
+
 int main() {
     FastIO;
     int n{0},m{0};

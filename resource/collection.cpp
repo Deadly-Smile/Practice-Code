@@ -23,6 +23,7 @@ int main() {
     while(test--) {
         // std::reverse(a.begin(), a.end());    // reverse
         // std::vector<std::vector<int>> vec( n , std::vector<int> (m, 0));
+        // int* newArr = new int[n+1];
     }
     return 0;
 }

@@ -12,31 +12,35 @@ typedef std::vector<int> VI;
 typedef std::vector<pairs> VII;
 //---------------------------Good luck---------------------------------//
 
-// DFS method
-bool isCycleUtil(std::vector<int> graph[], bool isVisited[], bool additional[], int root) {
-    if(!isVisited[root]) {
-        isVisited[root] = true;
-        additional[root] = true;
+// BFS method
+bool isCycleUtil(std::vector<int> graph[], char flag[], int root) {
+    std::queue<int> que;
+    que.push(root);
+    flag[root] = -1;
 
-        for (auto i : graph[root]) {
-            if(!isVisited[i] && isCycleUtil(graph, isVisited, additional, i))
-                return true;
-            if(additional[i])
-                return true;
+    while(!que.empty()) {
+        int x = que.front();
+        que.pop();
+        flag[x] = 1;
+
+        for (auto i : graph[x]) {
+            if(flag[i] == -1 || i == x)   return true;
+            if(flag[i] == 0) {
+                que.push(i);
+                flag[i] = -1;
+            }
         }
     }
-    additional[root] = false;
     return false;
 }
 
 // O(V+E)
-bool isCycle(std::vector<int> graph[], int n) {
-    bool isVisited[n+1] = {false};
-    bool additional[n+1] = {false};
-
-    for (int i = 0; i < n; i++) {
-        if(isCycleUtil(graph, isVisited, additional, i))
-            return true;
+bool isCycle(std::vector<int> graph[], int size) {
+    char flag[size+1] = {0};
+    for (int i = 0; i < size; i++) {
+        if(!flag[i])
+            if(isCycleUtil(graph, flag, i))
+                return true;
     }
     return false;
 }
@@ -54,6 +58,7 @@ int main() {
             int from{0},to{0};
             cin >> from >> to;
             adj[from].push_back(to);
+            adj[to].push_back(from);
         }
 
         if(isCycle(adj, v))    std::cout << "YES" << std::endl;
@@ -65,27 +70,41 @@ int main() {
 
 /*
 input :
-2
-4 4
-0 1
-1 2
-2 3
-3 3
+5
+1 1
+0 0
 
-11 11
-7 0
+5 4
+0 1
+0 2
+1 4
+1 3
+
+5 5
 0 4
-4 5
+1 2
+1 4
+2 3
+3 4
+
+7 5
+0 1
+0 2
+3 5
 5 6
-6 8
-8 9
-9 3
-3 2
-2 1
-1 10
-4 6
+3 6
+
+7 5
+0 1
+0 2
+3 5
+5 6
+3 4
 
 output :
+YES
+NO
+YES
 YES
 NO
 */
