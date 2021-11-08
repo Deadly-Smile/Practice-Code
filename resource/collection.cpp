@@ -24,6 +24,8 @@ int main() {
         // std::reverse(a.begin(), a.end());    // reverse
         // std::vector<std::vector<int>> vec( n , std::vector<int> (m, 0));
         // int* newArr = new int[n+1];
+        // std::cout << setw(10) << n << std::endl;
+        // getline(cin, names);
     }
     return 0;
 }
@@ -62,6 +64,21 @@ void inputVec(std::vector<T> &arr, int n) {
     }
 }
 
+vector<string> split (string s, string delimiter) {
+    size_t pos_start = 0, pos_end, delim_len = delimiter.length();
+    string token;
+    vector<string> res;
+
+    while ((pos_end = s.find (delimiter, pos_start)) != string::npos) {
+        token = s.substr (pos_start, pos_end - pos_start);
+        pos_start = pos_end + delim_len;
+        res.push_back (token);
+    }
+
+    res.push_back (s.substr (pos_start));
+    return res;
+}
+
 int divisors(int n) {
     if(n == 1) return 1;
     int count{0};
@@ -76,6 +93,15 @@ int divisors(int n) {
         }
     }
     return count;
+}
+
+template<typename T>
+int linearSearch(T arr[], int n, T key) {
+    for (int i = 0; i < n; i++) {
+        if(arr[i] == key)
+            return i;
+    }
+    return -1;
 }
 
 template<typename T>

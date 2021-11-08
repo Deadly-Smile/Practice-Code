@@ -15,8 +15,6 @@ typedef std::pair<int, int> pairs;
 const int N = 1e5 + 1;
 bool prime[N] = {0};
 void calculatePrime(int n) {
-    // to use multiple time
-    // memset(prime, 0, sizeof(prime));
     prime[0] = true;
     prime[1] = true;
     for (int i = 2; i*i <= n; i++){
@@ -32,7 +30,7 @@ std::vector<int> getPrimeList(int n) {
     std::vector<int> v;
     for(int i = 2; i <= n; i++) {
         if(!prime[i])
-            v.PB(i);
+            v.push_back(i);
     }
     return v;
 }
