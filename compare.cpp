@@ -30,7 +30,6 @@ int main() {
         other.insert(temp);
     }
 
-    std::cout << other.size() << std::endl;
     int count{0};
     for (auto i : other) {
         if(!me.count(i)) {
@@ -38,6 +37,7 @@ int main() {
             count++;
         }
     }   std::cout << std::endl;
+    std::cout << count << std::endl;
     
     return 0;
 }

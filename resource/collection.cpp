@@ -24,8 +24,12 @@ int main() {
         // std::reverse(a.begin(), a.end());    // reverse
         // std::vector<std::vector<int>> vec( n , std::vector<int> (m, 0));
         // int* newArr = new int[n+1];
+        
         // std::cout << setw(10) << n << std::endl;
         // getline(cin, names);
+
+        // std::string str1 = std::to_string(12.10);    // number to string
+        // stringstream geek("12345"); geek >> x;       // string to number
     }
     return 0;
 }

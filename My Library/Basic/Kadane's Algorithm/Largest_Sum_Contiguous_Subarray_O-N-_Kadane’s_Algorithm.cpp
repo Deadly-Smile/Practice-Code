@@ -19,7 +19,7 @@ void inputArray(T arr[], int n){
     }
 }
 
-int solve(int arr[], int n) {
+int kadaneMaxSum(int arr[], int n) {
 	int maxSoFar{0};
 	int current{0};
 
@@ -47,7 +47,7 @@ int main() {
     while(test--) {
     	int n{0};   cin >> n;
     	int arr[n];	inputArray(arr, n);
-    	int max = solve(arr, n);
+    	int max = kadaneMaxSum(arr, n);
     	cout << max << endl;
     }
     return 0;

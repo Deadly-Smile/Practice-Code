@@ -44,7 +44,7 @@ bool helperBFS(const std::vector<int> graph[], char record[], bool isVisited[], 
     return true;
 }
 
-// have to rememder that graphs can be disconnected
+// have to remember that graphs can be disconnected
 // O(V+E)
 bool isBipartite(const std::vector<int> graph[], int size, bool type) {
     char record[size+1] = {0};

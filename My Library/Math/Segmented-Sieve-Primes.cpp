@@ -30,7 +30,7 @@ std::vector<int> getPrimeList(int n) {
     std::vector<int> v;
     for(int i = 2; i <= n; i++) {
         if(!prime[i])
-            v.PB(i);
+            v.push_back(i);
     }
     return v;
 }
