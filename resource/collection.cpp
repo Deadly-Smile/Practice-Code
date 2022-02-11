@@ -21,15 +21,27 @@ int main() {
     FastIO;
     int test{0};   cin >> test;
     while(test--) {
-        // std::reverse(a.begin(), a.end());    // reverse
-        // std::vector<std::vector<int>> vec( n , std::vector<int> (m, 0));
-        // int* newArr = new int[n+1];
-        
-        // std::cout << setw(10) << n << std::endl;
-        // getline(cin, names);
+        std::reverse(a.begin(), a.end());    // reverse
+        std::vector<std::vector<int>> vec( n , std::vector<int> (m, 0));
+        int* newArr = new int[n+1];
 
-        // std::string str1 = std::to_string(12.10);    // number to string
-        // stringstream geek("12345"); geek >> x;       // string to number
+        std::cout << setw(10) << n << std::endl;
+        getline(cin, names);
+
+        binary_search(arr.begin(), arr.end(), 15)    // binary search
+        std::string str1 = std::to_string(12.10);    // number to string
+        stringstream scanner("12345"); scanner >> x;       // string to number
+        s.find(s1) != string::npos                   // finds sub-string
+
+        /* Bit manupulating tricks 
+        n = n * 2 :: n = n << 1
+        n = n /2  :: n = n >> 1
+        checking if n is power of 2 (1,2,4,8…) :: checking !(n & (n-1))
+        if x is max power of 2 dividing n, then x = (n & -n)
+        Total number of bits which are set in n = __builtin_popcount(n)
+        setting xth bit of n  :: n |= (1<<x)
+        checking if xth bit of n is set :: checking if  n&(1<<x) is non zero
+        */
     }
     return 0;
 }
@@ -68,6 +80,7 @@ void inputVec(std::vector<T> &arr, int n) {
     }
 }
 
+// Just like parse in java
 vector<string> split (string s, string delimiter) {
     size_t pos_start = 0, pos_end, delim_len = delimiter.length();
     string token;
@@ -169,6 +182,16 @@ M min(M arr[], int n){         // It works for all data type
 }
 
 template<typename M>
+M max(M arr[], int n){         // It works for all data type
+    M m{arr[0]};
+    for(int i = 1; i < n; i++){
+        if(m < arr[i])
+            m = arr[i];
+    }
+    return m;
+}
+
+template<typename M>
 M min(std::vector<M> arr){         // It works for all data type
     M m{arr[0]};
     for(int i = 1; i < arr.size(); i++){
@@ -197,8 +220,8 @@ void copyArray(T arr[],T proxyArr[], int &n){
     }
 }
 
-template<typename T1>
-T1 gcd (T1 a, T1 b) {
+template<typename T>
+T gcd (T a, T b) {
     if (b == 0) return a;
     else    return gcd (b, a%b);
 }

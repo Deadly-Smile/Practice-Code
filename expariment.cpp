@@ -11,40 +11,46 @@ typedef std::pair<int, int> pairs;
 typedef std::vector<int> VI;
 typedef std::vector<pairs> VII;
 //---------------------------Good luck---------------------------------//
-// std::set<string> record;
-std::vector<string> record;
-void solve(string &s, int l, int r) {
-    if(l == r) {
-        // record.insert(s);
-        record.push_back(s);
-        return;
-    }
-    for (int i = l; i < r; i++) {
-        if(!(s[i] >= 'a' && s[i] <= 'z')) {
-            s[i] = '!'; solve(s, l+1, r);
-            s[i] = '*'; solve(s, l+1, r);
-            s[i] = '@'; solve(s, l+1, r);
-        }
-    }
-}
 
 int main() {
     FastIO;
 
-    int test{0};   std::cin >> test;
-    while(test--) {
-        string s;   Ignore;
-        std::cin >> s;
-        record.clear();
-        solve(s, 0, s.length());
-        if(!record.size()) {
-            std::cout << s << std::endl;
-            continue;
-        }
-        for (auto &i : record) {
-            std::cout << i << " ";
-        }   std::cout << std::endl;
+    int n{0};   std::cin >> n;
+    pairs arr[n];	// typedef std::pair<int, int> pairs;
+
+    for (int i = 0; i < n; i++) {
+        std::cin >> arr[i].first;
+        arr[i].second = i+1;
     }
-    
+    // arr[0].first must be out of calculation
+    std::sort(arr+1, arr+n);
+
+    int sum{0},leftOnes{0},taken{0};
+    for (int i = 0; i < n; i++) {
+        sum += arr[i].first;
+    }
+    std::vector<int> record;
+
+    for (int i = 1; i < n; i++) {
+        if(arr[i].first*2 > arr[0].first) {
+        	break;
+        }
+        taken += arr[i].first;
+        record.push_back(arr[i].second);
+    }
+
+    taken += arr[0].first;
+    leftOnes = sum - taken;
+
+    if(leftOnes >= taken) {
+    	std::cout << 0 << std::endl;
+    } else {
+    	record.push_back(1);
+    	std::sort(record.begin(), record.end());
+    	std::cout << record.size() << std::endl;
+    	for (auto &i : record) {
+    	    std::cout << i << " ";
+    	}	std::cout << std::endl;
+    }
     return 0;
 }

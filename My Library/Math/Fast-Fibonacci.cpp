@@ -17,15 +17,6 @@ typedef std::vector<std::vector<ll>> Matrix;
 const int M = 1e9 + 7;
 std::vector<Matrix> record;
 
-// Matrix matrixMultiplication (Matrix matrix1, Matrix matrix2) {
-//     Matrix mat{{0, 0}, {0, 0}};
-//     mat[0][0] = (matrix1[0][0]*matrix2[0][0]) % M + (matrix1[0][1]*matrix2[1][0]) % M;
-//     mat[0][1] = (matrix1[0][0]*matrix2[0][1]) % M + (matrix1[0][1]*matrix2[1][1]) % M;
-//     mat[1][0] = (matrix1[1][0]*matrix2[0][0]) % M + (matrix1[1][1]*matrix2[1][0]) % M;
-//     mat[1][1] = (matrix1[1][0]*matrix2[0][1]) % M + (matrix1[1][1]*matrix2[1][1]) % M;
-//     return mat;
-// }
-
 Matrix matrixMultiplication (Matrix matrix1, Matrix matrix2) {
     int row1{(int)matrix1.size()}, col1{(int)matrix1.at(0).size()};
     int col2{(int)matrix2.at(0).size()};
@@ -74,7 +65,7 @@ ll fastFibonicci(int n) {
 
     for (i = i+1; i < 64; i++) {
         if(set[i]) {
-            matrix = matrixMultiplication(matrix , record[i]);
+            matrix = matrixMultiplication(matrix, record[i]);
         }
     }
 
