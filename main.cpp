@@ -1,40 +1,42 @@
-#include <iostream>
-#include <string>
-#include <unordered_map>
-#include<vector>
+//----------------------Created by Anik Saha---------------------------//
+#include <bits/stdc++.h>
 using namespace std;
 
-int main(int argc, const char * argv[]) {
+#define FastIO ios_base::sync_with_stdio(false);    cin.tie(NULL)
+#define Ignore cin.ignore()
+typedef unsigned char Byte;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef std::pair<int, int> pairs;
+typedef std::vector<int> VI;
+typedef std::vector<pairs> VII;
+//---------------------------Good luck---------------------------------//
+template<typename T1, typename T2>
+void inputPairArray(std::pair<T1,T2> arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        std::cin >> arr[i].first >> arr[i].second;
+    }
+}
+
+bool compare(const pairs &a, const pairs &b) {
+    return a.second < b.second;
+}
+
+// this function reorder the array, keep in mind
+double smallestDistance2D (pairs arr[], int n) {
+    std::sort(arr, arr+n);
     
-    unordered_map<string, int> m;
-    //unordered_map<string, int>::iterator it;
-    vector<string> v;
-    vector<string>::iterator it;
-    int t,tk,person;
-    string str;
-    while(cin>>t){
-        int temp=t;
-        while(t--){
-            cin>>str;
-            m.insert({str,0});
-            v.push_back(str);
-        }
-        while (temp--) {
-            cin>>str>>tk>>person;
-            if(person>0){
-                int count = tk/person;   //200/3 = 66
-                m[str] -= count*person;  //66*3 = 198
-                while(person--){
-                    cin>>str;
-                    m[str] += count;
-                }
-            }
-        }
-        for(it=v.begin(); it!=v.end(); it++) cout<<*it<<" "<<m[*it]<<endl;
-        cout<<endl;
-        m.clear();
-        v.clear();
-        
+}
+
+int main() {
+    FastIO;
+
+    int test{0};   std::cin >> test;
+    while(test--) {
+        int n{0};   std::cin >> n;
+        pairs arr[n];
+        inputPairArray(arr, n);
+
     }
     
     return 0;
