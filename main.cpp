@@ -11,21 +11,21 @@ typedef std::pair<int, int> pairs;
 typedef std::vector<int> VI;
 typedef std::vector<pairs> VII;
 //---------------------------Good luck---------------------------------//
-template<typename T1, typename T2>
-void inputPairArray(std::pair<T1,T2> arr[], int n) {
-    for (int i = 0; i < n; i++) {
-        std::cin >> arr[i].first >> arr[i].second;
+template<typename T>
+void inputArray(T arr[], int n) {
+    for(int i = 0; i < n; i++) {
+        cin >> arr[i];
     }
 }
 
-bool compare(const pairs &a, const pairs &b) {
-    return a.second < b.second;
-}
-
-// this function reorder the array, keep in mind
-double smallestDistance2D (pairs arr[], int n) {
-    std::sort(arr, arr+n);
-    
+ll calculateCost(int arr[], ll DP[], int n, int m) {
+    if(DP[m]) return DP[m];
+    if(m <= 0) return 0;
+    for (int i = 0; i < n; i++) {
+        DP[m] = std::max(DP[m], (calculateCost(arr, DP, n, m-arr[i]) 
+                + calculateCost(arr, DP, n, arr[i])));
+    }
+    return DP[m];
 }
 
 int main() {
@@ -33,10 +33,11 @@ int main() {
 
     int test{0};   std::cin >> test;
     while(test--) {
-        int n{0};   std::cin >> n;
-        pairs arr[n];
-        inputPairArray(arr, n);
-
+        int n{0},m{0};
+        std::cin >> n >> m;
+        int arr[n]; inputArray(arr, n);
+        ll DP[m+1] = {0};
+        std::cout << calculateCost(arr, DP, n, m) << std::endl;
     }
     
     return 0;

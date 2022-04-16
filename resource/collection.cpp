@@ -15,6 +15,8 @@ typedef std::pair<int, int> pairs;
 typedef std::priority_queue<int> MaxHeap;
 typedef priority_queue<int, vector<int>, greater<int>> MinHeap;
 typedef std::vector<std::vector<long long>> Matrix;
+// Matrix matrix(n , vector<int> (m, 0));
+
 
 
 int main() {

@@ -1,6 +1,8 @@
-1 2
-2 3
-4 5
-7 8
-9 6
-
+enter the row and columns of a matrix:
+enter the element of a matrix:
+enter a matrix:
+1	2	4	
+5	7	8	
+transpose matrix:
+1	5	0	
+2	7	0	
