@@ -13,7 +13,7 @@ typedef unsigned long long ull;
 typedef std::pair<int, int> pairs;
 //---------------------------Good luck---------------------------------//
 
-std::vector<int> dijkstraSortPath(const std::vector<pairs> graph[], int nodes, int root) {
+std::vector<int> dijkstraShortPath(const std::vector<pairs> graph[], int nodes, int root) {
     // initialize
     std::vector<int> values(nodes+1, 1e9);
     bool isVisited[nodes+1] = {0};
@@ -50,7 +50,7 @@ int main() {
         std::cin >> x >> y >> z;
         graph[x].push_back({y, z});
     }
-    std::vector<int> values = dijkstraSortPath(graph, n, 1);
+    std::vector<int> values = dijkstraShortPath(graph, n, 1);
     for (int i = 2; i < n + 1; i++) {
         std::cout << values[i] << " ";
     }

@@ -1,8 +1,5 @@
-enter the row and columns of a matrix:
-enter the element of a matrix:
-enter a matrix:
-1	2	4	
-5	7	8	
-transpose matrix:
-1	5	0	
-2	7	0	
+1
+2
+1
+3
+0

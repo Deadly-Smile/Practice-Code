@@ -11,33 +11,35 @@ typedef std::pair<int, int> pairs;
 typedef std::vector<int> VI;
 typedef std::vector<pairs> VII;
 //---------------------------Good luck---------------------------------//
-template<typename T>
-void inputArray(T arr[], int n) {
-    for(int i = 0; i < n; i++) {
-        cin >> arr[i];
-    }
-}
+const int N = 1e9+5;
+VI record;
 
-ll calculateCost(int arr[], ll DP[], int n, int m) {
-    if(DP[m]) return DP[m];
-    if(m <= 0) return 0;
-    for (int i = 0; i < n; i++) {
-        DP[m] = std::max(DP[m], (calculateCost(arr, DP, n, m-arr[i]) 
-                + calculateCost(arr, DP, n, arr[i])));
+void preCalculate() {
+    ll temp{0};
+    int i{1};
+    while(temp <= N) {
+        temp += (i*2) + (i-1);
+        record.push_back(temp);
+        i++;
     }
-    return DP[m];
 }
 
 int main() {
     FastIO;
 
+    preCalculate();
     int test{0};   std::cin >> test;
     while(test--) {
-        int n{0},m{0};
-        std::cin >> n >> m;
-        int arr[n]; inputArray(arr, n);
-        ll DP[m+1] = {0};
-        std::cout << calculateCost(arr, DP, n, m) << std::endl;
+        int n{0};   std::cin >> n;
+        int count{0};
+        while(n > 1) {
+            auto it = std::lower_bound(record.begin(), record.end(), n+1);
+            it--;
+            // std::cout << *it << " " << n << std::endl;
+            n -= *it;
+            count++;
+        }
+        std::cout << count << std::endl;
     }
     
     return 0;

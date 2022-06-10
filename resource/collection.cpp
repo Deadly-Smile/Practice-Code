@@ -44,6 +44,14 @@ int main() {
         setting xth bit of n  :: n |= (1<<x)
         checking if xth bit of n is set :: checking if  n&(1<<x) is non zero
         */
+
+        // initialize and fill matrix or 2d array
+        Matrix matrix(n, VI(m, 0));
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                std::cin >> matrix.at(i).at(j);
+            }
+        }
     }
     return 0;
 }
