@@ -12,6 +12,10 @@ typedef std::pair<int, int> pairs;
 typedef std::vector<int> VI;
 typedef std::vector<pairs> VII;
 //---------------------------Good luck---------------------------------//
+/*
+    Attention : This code has not been tested properly.
+*/
+
 int minEditDistancePlainRecursion (string s, string t) {
     if(!s.length()) return t.length();
     if(!t.length()) return s.length();
@@ -53,6 +57,7 @@ pairs minEditDistanceRecursion (string s, string t) {
     // return minEditDistancePlainRecursion(s, t);
 }
 
+// O(N*M) / O(N^2)
 int minEditDistanceItarativeDP (string s, string t) {
     int m = s.length();
     int n = t.length();
@@ -98,3 +103,19 @@ int main() {
     }
     return 0;
 }
+
+/*
+input : 
+3
+132456
+123456456
+abcd
+abcgf
+123456789
+987645321
+
+output :
+4 4 4
+2 2 2
+8 8 8
+*/

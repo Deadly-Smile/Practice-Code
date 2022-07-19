@@ -17,7 +17,27 @@ typedef priority_queue<int, vector<int>, greater<int>> MinHeap;
 typedef std::vector<std::vector<long long>> Matrix;
 // Matrix matrix(n , vector<int> (m, 0));
 
+/*  use scanf when you want to get %.'n'lf functionality
+double f =3.14159;
+  std::cout << std::setprecision(5) << f << '\n';
+  std::cout << std::setprecision(9) << f << '\n';
+  std::cout << std::fixed;
+  std::cout << std::setprecision(5) << f << '\n';
+  std::cout << std::setprecision(9) << f << '\n';
 
+
+output : 
+3.1416
+3.14159
+3.14159
+3.141590000
+*/
+
+/* // Function that takes a pointer to a function
+int invoke(int x, int y, int (*func)(int, int)) {
+    return func(x, y);
+}
+*/
 
 int main() {
     FastIO;
@@ -58,22 +78,6 @@ int main() {
 
 // sort in descending order 
 sort(arr, arr + n, greater<T>());
-
-
-// All function initialaization
-template<typename T>
-void inputArray(T arr[], int n);
-template<typename T>        // deep copy of string
-void deepCopy(T* copyTo, T* copy);
-template<typename M>
-M min(M arr[], int n);
-template<typename T>        // copies array
-void copyArray(T arr[],T proxyArr[], int &n);
-template<typename T1>
-T1 gcd (T1 a, T1 b);
-int divisors(int n);    // O(sqrt(N))
-
-
 template<typename T>    // inputting array
 void inputArray(T arr[], int n){
     for(int i = 0; i < n; i++){          
@@ -234,14 +238,4 @@ template<typename T>
 T gcd (T a, T b) {
     if (b == 0) return a;
     else    return gcd (b, a%b);
-}
-
-int main(){
-    FastIO;
-    // fileReadWrite
-    int test{0};   cin >> test;
-    while(test--) {
-        
-    }
-    return 0;
 }
