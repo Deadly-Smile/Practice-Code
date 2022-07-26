@@ -24,10 +24,11 @@ int main() {
 
     int n{0}, limit{0};
     std::cin >> n >> limit;
-    int weight[n];
-    inputArray(weight, n);
     int value[n];
     inputArray(value, n);
+    int weight[n];
+    inputArray(weight, n);
+    
 
     vector<vector<int>> dp(n+1, vector<int>(limit+1, -1));
     for (int i = 0; i < n+1; i++) { dp[i][0] = 0; }

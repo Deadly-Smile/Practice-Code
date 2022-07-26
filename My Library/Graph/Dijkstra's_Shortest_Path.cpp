@@ -28,7 +28,7 @@ std::vector<int> dijkstraShortPath(const std::vector<pairs> graph[], int nodes, 
         pairs p = q.top();
         q.pop();
         if (isVisited[p.second])    continue;
-        else    isVisited[p.second] = true;
+        isVisited[p.second] = true;
 
         for(auto i : graph[p.second]) {
             if(p.first + i.second < values[i.first]) {
@@ -49,6 +49,7 @@ int main() {
         int x{0}, y{0}, z{0};
         std::cin >> x >> y >> z;
         graph[x].push_back({y, z});
+        graph[y].push_back({x, z});
     }
     std::vector<int> values = dijkstraShortPath(graph, n, 1);
     for (int i = 2; i < n + 1; i++) {
