@@ -18,7 +18,7 @@ std::vector<int> dijkstraShortPath(const std::vector<pairs> graph[], int nodes, 
     std::vector<int> values(nodes+1, 1e9);
     bool isVisited[nodes+1] = {0};
     std::priority_queue<pairs, vector<pairs>, greater<pairs>> q;
-    // values[0] = -1;          // if nodes starts from 1
+    values[0] = -1;          // if nodes starts from 1
     // values[nodes] = -1;  // if nodes starts from 0
     values[root] = 0;
     q.push({0, root});

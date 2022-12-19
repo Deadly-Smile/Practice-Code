@@ -13,7 +13,7 @@ typedef unsigned long long ull;
 typedef std::pair<int, int> pairs;
 //---------------------------Good luck---------------------------------//
 typedef std::vector<int> Graph;
-std::vector<int> BFSLevel(Graph graph[], int size, int root) {
+std::vector<int> BFSLevel(std::vector<int> graph[], int size, int root) {
     std::vector<int> levelArr(size, -1);
     std::queue<int> que;
     bool isVisited[size+1] = {false};

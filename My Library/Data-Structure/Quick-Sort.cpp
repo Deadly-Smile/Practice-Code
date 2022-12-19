@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int perition(int arr[], int l, int r) {
+int partition(int arr[], int l, int r) {
     int count{0};
     int pivot = arr[l];
     for (int i = l+1; i <= r; i++) {
@@ -29,7 +29,7 @@ int perition(int arr[], int l, int r) {
 
 void quickSort(int arr[], int l, int r) {
     if(l >= r) return;
-    int p = perition(arr, l, r);
+    int p = partition(arr, l, r);
     quickSort(arr, l, p-1);
     quickSort(arr, p+1, r);
 }

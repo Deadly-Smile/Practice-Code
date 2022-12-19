@@ -30,6 +30,18 @@ long long power(int x1, long long y) {
     return ans % M;
 }
 
+long long power(int x1, int y) { 
+    // O(logN)
+    long long ans{1}, x{x1};
+    if(!x)  return 0;
+    while (y > 0) {
+        if (y & 1) ans *= x;
+        y = y >> 1;
+        x *= x;
+    }
+    return ans;
+}
+
 ///////////Alternative way/////////////// 
 std::vector<int> record;
 void initialize(int n) {
@@ -61,10 +73,6 @@ output :
 /////////////////////////////////////////
 
 int main() {
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    #endif
     FastIO;
 
     int test{0};   std::cin >> test;

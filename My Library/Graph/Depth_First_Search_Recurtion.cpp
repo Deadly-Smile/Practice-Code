@@ -17,7 +17,7 @@ std::vector<int> v;
 std::vector<int> graph[N];
 bool isVisited[N] = {false};
 
-void DFS(int root) {    // Its a recurtion function
+void DFS(int root) {    // Its a recursion function
     if(!isVisited[root]) {
         v.push_back(root);
         isVisited[root] = true;

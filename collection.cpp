@@ -55,6 +55,14 @@ int main() {
         stringstream scanner("12345"); scanner >> x;       // string to number
         s.find(s1) != string::npos                   // finds sub-string
 
+        /* test header declare */
+        std::regex r(" *# *include *< *[!-~]+ *> *");
+        if(regex_match(s, r)) {
+            std::cout << "correct" << std::endl;
+        } else {
+            std::cout << "error" << std::endl;
+        } 
+
         /* Bit manupulating tricks 
         n = n * 2 :: n = n << 1
         n = n /2  :: n = n >> 1
@@ -64,6 +72,9 @@ int main() {
         setting xth bit of n  :: n |= (1<<x)
         checking if xth bit of n is set :: checking if  n&(1<<x) is non zero
         */
+
+        int max = *max_element(arr, arr + n);
+        int max = *max_element(a.begin(), a.end());
 
         // initialize and fill matrix or 2d array
         Matrix matrix(n, VI(m, 0));
@@ -185,6 +196,14 @@ M max(std::vector<M> arr){         // It works for all data type
     return m;
 }
 
+int mod(string num, int a) {
+    int res{0};
+    for (int i = 0; i < num.length(); i++) {
+        res = (res * 10 + (int)num[i] - '0') % a;
+    }
+    return res;
+}
+
 template<typename M>
 M min(M arr[], int n){         // It works for all data type
     M m{arr[0]};
@@ -238,4 +257,21 @@ template<typename T>
 T gcd (T a, T b) {
     if (b == 0) return a;
     else    return gcd (b, a%b);
+}
+
+std::vector<string> subString(string s) {
+    int n = s.length();
+    std::vector<string> record;
+    for (int i = 0; i < n; i++) {
+        for (int len = 1; len <= n - i; len++) {
+            record.push_back(s.substr(i, len));
+        }
+    }
+    return record;
+}
+
+bool isPalindrome(string s) {
+    string t = s;
+    reverse(t.begin(), t.end());
+    return s == t;
 }

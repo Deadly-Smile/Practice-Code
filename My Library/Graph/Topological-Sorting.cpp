@@ -25,16 +25,9 @@ std::vector<int> topologicalSort(const std::vector<int> graph[], int n, bool typ
     bool isVisited[n+1] = {false};
     std::vector<int> v;
 
-    if(!type) {
-        for (int i = 0; i < n; i++) {
-            if(!isVisited[i])
-                helperDFS(graph, i, isVisited, v);
-        }
-    } else {
-        for (int i = 1; i <= n; i++) {
-            if(!isVisited[i])
-                helperDFS(graph, i, isVisited, v);
-        }
+    for (int i = type; i < n+type; i++) {
+        if(!isVisited[i])
+            helperDFS(graph, i, isVisited, v);
     }
     std::reverse(v.begin(), v.end());
     return v;
